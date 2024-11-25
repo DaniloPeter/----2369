@@ -62,6 +62,18 @@
       "shift": {
         "type": "sap.ui.model.json.JSONModel",
         "uri": "localService/mockdata/Shift.json"
+      },
+      "downTime": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "localService/mockdata/DownTime.json"
+      },
+      "crew": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "localService/mockdata/Crew.json"
+      },
+      "engineer": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "localService/mockdata/Engineer.json"
       }
     },
     "rootView": {

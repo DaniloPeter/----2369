@@ -13,10 +13,13 @@ sap.ui.define(
         UIComponent.prototype.init.apply(this, arguments);
 
         const oData = {
-          downTime: false,
+          downTimeSwitch: false,
           defect: false,
           line: 5,
           order: 2,
+          engineer: 3,
+          downTime: 1,
+          shift: 1,
         };
 
         const oModel = new JSONModel(oData);

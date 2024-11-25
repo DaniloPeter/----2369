@@ -74,7 +74,7 @@
                             items="{
                         path: 'shift>/Shift'
                     }"
-                            selectedKey="{data>/order}">
+                            selectedKey="{data>/shift}">
                             <core:Item
                                 key="{shift>key}"
                                 text="{shift>name}" />
@@ -94,10 +94,14 @@
                             text="Инженер по качеству"
                             labelFor="input-line"
                         />
-                        <Select>
-                            <core:ListItem key="line1" text="Линия 1" />
-                            <core:ListItem key="line2" text="Линия 2" />
-                            <core:ListItem key="line3" text="Линия 3" />
+                        <Select forceSelection="false" id="engineerSelect"
+                            items="{
+                        path: 'engineer>/Engineer'
+                    }"
+                            selectedKey="{data>/engineer}">
+                            <core:Item
+                                key="{engineer>key}"
+                                text="{engineer>name}" />
                         </Select>
                     </VBox>
                     <VBox>
@@ -212,7 +216,8 @@
                     text="Простой"
                     labelFor="input-line"
                 />
-                <Switch id="downTimeSwitch" state="{= ${data>/downTime}}" change=".onSwitchChange"
+                <Switch id="downTimeSwitch" state="{= ${data>/downTimeSwitch}}"
+                    change=".onSwitchChange"
                     customTextOn=" "
                     customTextOff=" " />
                 <HBox>
@@ -220,15 +225,20 @@
                         text="Простой №1" />
                     <VBox>
                         <Label text="Тип простоя" />
-                        <Select enabled="{= ${data>/downTime}}">
-                            <core:ListItem key="line1" text="Линия 1" />
-                            <core:ListItem key="line2" text="Линия 2" />
-                            <core:ListItem key="line3" text="Линия 3" />
+                        <Select forceSelection="false" id="downTimeSelect"
+                            enabled="{= ${data>/downTimeSwitch}}"
+                            items="{
+                        path: 'downTime>/DownTime'
+                    }"
+                            selectedKey="{data>/downTime}">
+                            <core:Item
+                                key="{downTime>key}"
+                                text="{downTime>name}" />
                         </Select>
                     </VBox>
                     <VBox>
                         <Label text="Начало простоя" />
-                        <TimePicker enabled="{= ${data>/downTime}}"
+                        <TimePicker enabled="{= ${data>/downTimeSwitch}}"
                             id="startDateItem"
                             dateValue="{employee>BirthDate}"
                             editable="{= ${data>/editMode}}"
@@ -239,11 +249,11 @@
                     </VBox>
                     <VBox>
                         <Label text="Время простоя, часов" />
-                        <Input enabled="{= ${data>/downTime}}"></Input>
+                        <Input enabled="{= ${data>/downTimeSwitch}}"></Input>
                     </VBox>
                     <VBox>
                         <Label text="Время простоя, минут" />
-                        <Input enabled="{= ${data>/downTime}}"></Input>
+                        <Input enabled="{= ${data>/downTimeSwitch}}"></Input>
                     </VBox>
                 </HBox>
                 <HBox>
@@ -251,15 +261,20 @@
                         text="Простой №2" />
                     <VBox>
                         <Label text="Тип простоя" />
-                        <Select enabled="{= ${data>/downTime}}">
-                            <core:ListItem key="line1" text="Линия 1" />
-                            <core:ListItem key="line2" text="Линия 2" />
-                            <core:ListItem key="line3" text="Линия 3" />
+                        <Select forceSelection="false" id="downTimeSelect2"
+                            enabled="{= ${data>/downTimeSwitch}}"
+                            items="{
+                        path: 'downTime>/DownTime'
+                    }"
+                            selectedKey="{data>/downTime}">
+                            <core:Item
+                                key="{downTime>key}"
+                                text="{downTime>name}" />
                         </Select>
                     </VBox>
                     <VBox>
                         <Label text="Начало простоя" />
-                        <TimePicker enabled="{= ${data>/downTime}}"
+                        <TimePicker enabled="{= ${data>/downTimeSwitch}}"
                             id="startDateItem2"
                             dateValue="{employee>BirthDate}"
                             editable="{= ${data>/editMode}}"
@@ -270,11 +285,11 @@
                     </VBox>
                     <VBox>
                         <Label text="Время простоя, часов" />
-                        <Input enabled="{= ${data>/downTime}}"></Input>
+                        <Input enabled="{= ${data>/downTimeSwitch}}"></Input>
                     </VBox>
                     <VBox>
                         <Label text="Время простоя, минут" />
-                        <Input enabled="{= ${data>/downTime}}"></Input>
+                        <Input enabled="{= ${data>/downTimeSwitch}}"></Input>
                     </VBox>
                 </HBox>
                 <Button

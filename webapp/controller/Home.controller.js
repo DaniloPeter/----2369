@@ -14,7 +14,8 @@ sap.ui.define(
         const sId = oEvent.getParameter("id");
         const oModel = this.getView().getModel("data");
 
-        if (sId.includes("downTime")) oModel.setProperty("/downTime", newState);
+        if (sId.includes("downTime"))
+          oModel.setProperty("/downTimeSwitch", newState);
         if (sId.includes("defect")) oModel.setProperty("/defect", newState);
       },
     });
