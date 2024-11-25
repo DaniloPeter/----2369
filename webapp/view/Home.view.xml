@@ -10,7 +10,6 @@
         <content>
             <VBox class="sapUiSmallMargin">
                 <HBox>
-                    <!-- Input Завод -->
                     <VBox>
                         <Label
                             text="Завод"
@@ -43,8 +42,8 @@
                         />
                         <Select forceSelection="false" id="orderSelect"
                             items="{
-                        path: 'order>/Order'
-                    }"
+                                path: 'order>/Order'
+                            }"
                             selectedKey="{data>/order}">
                             <core:Item
                                 key="{order>key}"
@@ -59,9 +58,9 @@
                             labelFor="input-line"
                         />
                         <DateTimePicker
-                            id="datetimepicker"
+                            id="dateTimePicker"
                             displayFormat="dd.MM.yyyy hh:mm:ss"
-                            minutesStep="3" secondsStep="5"
+                            minutesStep="5" secondsStep="5"
                             change="handleChange"
                             class="sapUiSmallMarginBottom" />
                     </VBox>
@@ -72,8 +71,8 @@
                         />
                         <Select forceSelection="false" id="shiftSelect"
                             items="{
-                        path: 'shift>/Shift'
-                    }"
+                                path: 'shift>/Shift'
+                            }"
                             selectedKey="{data>/shift}">
                             <core:Item
                                 key="{shift>key}"
@@ -178,7 +177,7 @@
                             text="Брак"
                             labelFor="input-line"
                         />
-                        <Switch id="defectSwitch" state="{= ${data>/defect}}"
+                        <Switch id="defectSwitch" state="{= ${data>/switch/defect}}"
                             change=".onSwitchChange" customTextOn=" " customTextOff=" " />
                     </VBox>
                     <VBox>
@@ -186,7 +185,7 @@
                             text="Срыв, в кг: (При срыве более 50 кг необходимо заполнить поля Брак)"
                             labelFor="input-line"
                         />
-                        <Input enabled="{= ${data>/defect}}" />
+                        <Input enabled="{= ${data>/switch/defect}}" />
                     </VBox>
                 </HBox>
                 <HBox>
@@ -196,10 +195,15 @@
                             text="Тип брака"
                             labelFor="input-line"
                         />
-                        <Select enabled="{= ${data>/defect}}">
-                            <core:ListItem key="line1" text="Линия 1" />
-                            <core:ListItem key="line2" text="Линия 2" />
-                            <core:ListItem key="line3" text="Линия 3" />
+                        <Select forceSelection="false" id="defectSelect"
+                            enabled="{= ${data>/switch/defect}}"
+                            items="{
+                        path: 'defect>/Defect'
+                    }"
+                            selectedKey="{data>/defect}">
+                            <core:Item
+                                key="{defect>key}"
+                                text="{defect>name}" />
                         </Select>
                     </VBox>
                     <VBox>
@@ -207,7 +211,7 @@
                             text="Комментарий"
                             labelFor="input-line"
                         />
-                        <Input enabled="{= ${data>/defect}}" />
+                        <Input enabled="{= ${data>/switch/defect}}" />
                     </VBox>
                 </HBox>
                 <HBox>
@@ -216,7 +220,7 @@
                     text="Простой"
                     labelFor="input-line"
                 />
-                <Switch id="downTimeSwitch" state="{= ${data>/downTimeSwitch}}"
+                <Switch id="downTimeSwitch" state="{= ${data>/switch/downTime}}"
                     change=".onSwitchChange"
                     customTextOn=" "
                     customTextOff=" " />
@@ -226,7 +230,7 @@
                     <VBox>
                         <Label text="Тип простоя" />
                         <Select forceSelection="false" id="downTimeSelect"
-                            enabled="{= ${data>/downTimeSwitch}}"
+                            enabled="{= ${data>/switch/downTime}}"
                             items="{
                         path: 'downTime>/DownTime'
                     }"
@@ -238,8 +242,8 @@
                     </VBox>
                     <VBox>
                         <Label text="Начало простоя" />
-                        <TimePicker enabled="{= ${data>/downTimeSwitch}}"
-                            id="startDateItem"
+                        <TimePicker enabled="{= ${data>/switch/downTime}}"
+                            id="firstStartDateItem"
                             dateValue="{employee>BirthDate}"
                             editable="{= ${data>/editMode}}"
                             change=".onDateChange2"
@@ -249,11 +253,11 @@
                     </VBox>
                     <VBox>
                         <Label text="Время простоя, часов" />
-                        <Input enabled="{= ${data>/downTimeSwitch}}"></Input>
+                        <Input enabled="{= ${data>/switch/downTime}}"></Input>
                     </VBox>
                     <VBox>
                         <Label text="Время простоя, минут" />
-                        <Input enabled="{= ${data>/downTimeSwitch}}"></Input>
+                        <Input enabled="{= ${data>/switch/downTime}}"></Input>
                     </VBox>
                 </HBox>
                 <HBox>
@@ -262,7 +266,7 @@
                     <VBox>
                         <Label text="Тип простоя" />
                         <Select forceSelection="false" id="downTimeSelect2"
-                            enabled="{= ${data>/downTimeSwitch}}"
+                            enabled="{= ${data>/switch/downTime}}"
                             items="{
                         path: 'downTime>/DownTime'
                     }"
@@ -274,8 +278,8 @@
                     </VBox>
                     <VBox>
                         <Label text="Начало простоя" />
-                        <TimePicker enabled="{= ${data>/downTimeSwitch}}"
-                            id="startDateItem2"
+                        <TimePicker enabled="{= ${data>/switch/downTime}}"
+                            id="secondStartDateItem"
                             dateValue="{employee>BirthDate}"
                             editable="{= ${data>/editMode}}"
                             change=".onDateChange2"
@@ -285,11 +289,11 @@
                     </VBox>
                     <VBox>
                         <Label text="Время простоя, часов" />
-                        <Input enabled="{= ${data>/downTimeSwitch}}"></Input>
+                        <Input enabled="{= ${data>/switch/downTime}}"></Input>
                     </VBox>
                     <VBox>
                         <Label text="Время простоя, минут" />
-                        <Input enabled="{= ${data>/downTimeSwitch}}"></Input>
+                        <Input enabled="{= ${data>/switch/downTime}}"></Input>
                     </VBox>
                 </HBox>
                 <Button

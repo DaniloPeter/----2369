@@ -74,6 +74,10 @@
       "engineer": {
         "type": "sap.ui.model.json.JSONModel",
         "uri": "localService/mockdata/Engineer.json"
+      },
+      "defect": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "localService/mockdata/Defect.json"
       }
     },
     "rootView": {
