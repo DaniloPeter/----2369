@@ -2,3 +2,12 @@
 .sapMSlt {
   margin-top: 0;
 }
+.sapMLIB.sapMListTblRow {
+  background: transparent;
+}
+.sapMLIBShowSeparator > td {
+  border: none;
+}
+.sapMListTblNavigatedCell {
+  border: none;
+}
