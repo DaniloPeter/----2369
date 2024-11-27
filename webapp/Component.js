@@ -22,7 +22,9 @@ sap.ui.define(
           engineer: 3,
           downTime: 1,
           shift: 1,
+          crew: 2,
           defect: 4,
+          resource: 5,
         };
 
         const oModel = new JSONModel(oData);

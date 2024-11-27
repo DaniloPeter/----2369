@@ -78,6 +78,32 @@
       "defect": {
         "type": "sap.ui.model.json.JSONModel",
         "uri": "localService/mockdata/Defect.json"
+      },
+      "resource": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "localService/mockdata/Resource.json"
+      },
+      "state": {
+        "type": "sap.ui.model.json.JSONModel",
+        "settings": {
+          "table": {
+            "busy": false,
+            "items": [
+              {
+                "downTimeNumber": 1,
+                "downTimeType": 0,
+                "dateBegin": null,
+                "time": null
+              },
+              {
+                "downTimeNumber": 2,
+                "downTimeType": 1,
+                "dateBegin": null,
+                "time": null
+              }
+            ]
+          }
+        }
       }
     },
     "rootView": {

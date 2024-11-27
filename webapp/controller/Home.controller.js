@@ -9,6 +9,11 @@ sap.ui.define(
   (Controller, MessageToast, Filter, FilterOperator) => {
     "use strict";
     return Controller.extend("ui5.testapp.controller.Home", {
+      onInit() {
+        const currentDate = new Date();
+        this.getView().byId("dateTimePicker").setDateValue(currentDate);
+      },
+
       onSwitchChange(oEvent) {
         const newState = oEvent.getParameter("state");
         const sId = oEvent.getParameter("id");

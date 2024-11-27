@@ -7,12 +7,19 @@
     displayBlock="true">
 
     <Page>
+        <customHeader>
+            <Toolbar>
+                <ToolbarSpacer />
+                <Title text="Опросный лист" />
+                <ToolbarSpacer />
+            </Toolbar>
+        </customHeader>
         <content>
             <VBox class="sapUiSmallMargin">
                 <HBox class="sapUiTinyMarginBottom">
                     <VBox width="100%" class="sapUiSmallMarginEnd">
                         <Label
-                            text="Завод"
+                            text="Завод:"
                             labelFor="input-b"
                         />
                         <Input class="sapUiNoMarginTop"
@@ -22,7 +29,23 @@
                     </VBox>
                     <VBox width="100%" class="sapUiSmallMarginEnd">
                         <Label
-                            text="Печатна линия"
+                            text="Ресурс:"
+                            labelFor="input-b"
+                        />
+                        <Select forceSelection="false" id="resourceSelect"
+                            width="100%"
+                            items="{
+                                path: 'resource>/Resource'
+                            }"
+                            selectedKey="{data>/resource}">
+                            <core:Item
+                                key="{resource>key}"
+                                text="{resource>name}" />
+                        </Select>
+                    </VBox>
+                    <VBox width="100%" class="sapUiSmallMarginEnd">
+                        <Label
+                            text="Режим флексопечати:"
                             labelFor="input-line"
                         />
                         <Select forceSelection="false" id="lineSelect"
@@ -38,7 +61,7 @@
                     </VBox>
                     <VBox width="100%">
                         <Label
-                            text="Условия заказа"
+                            text="Склад:"
                             labelFor="input-line"
                         />
                         <Select width="100%" forceSelection="false" id="orderSelect"
@@ -55,14 +78,15 @@
                 <HBox class="sapUiTinyMarginBottom">
                     <VBox width="100%" class="sapUiSmallMarginEnd ">
                         <Label
-                            text="Дата"
+                            text="Дата и время:"
                             labelFor="input-line"
                         />
                         <DateTimePicker width="100%"
                             id="dateTimePicker"
                             displayFormat="dd.MM.yyyy hh:mm:ss"
                             minutesStep="5" secondsStep="5"
-                            change="handleChange"
+                            placeholder="00.00.0000 00:00:00"
+                            
                         />
                     </VBox>
                     <VBox width="100%" class="sapUiSmallMarginEnd">
@@ -83,16 +107,25 @@
                     </VBox>
                     <VBox width="100%">
                         <Label
-                            text="Бригада"
+                            text="Бригада:"
                             labelFor="input-line"
                         />
-                        <Input />
+                        <Select forceSelection="false" id="crewSelect"
+                            width="100%"
+                            items="{
+                                path: 'crew>/Crew'
+                            }"
+                            selectedKey="{data>/crew}">
+                            <core:Item
+                                key="{crew>key}"
+                                text="{crew>name}" />
+                        </Select>
                     </VBox>
                 </HBox>
                 <HBox class="sapUiTinyMarginBottom">
                     <VBox width="100%" class="sapUiSmallMarginEnd">
                         <Label
-                            text="Инженер по качеству"
+                            text="Инженер по качеству:"
                             labelFor="input-line"
                         />
                         <Select
@@ -106,42 +139,49 @@
                                 text="{engineer>name}" />
                         </Select>
                     </VBox>
-                    <VBox width="100%">
+                    <VBox width="100%" class="sapUiSmallMarginEnd">
                         <Label
-                            text="Печатник высокой печати"
+                            text="Печатник высокой печати:"
                             labelFor="input-line"
                         />
-                        <Input />
+                        <Input placeholder="ФИО печатника"/>
+                    </VBox>
+                    <VBox width="100%">
+                        <Label
+                            text="Заказ:"
+                            labelFor="input-line"
+                        />
+                        <Input placeholder="Номер технологического заказа"/>
                     </VBox>
                 </HBox>
                 <HBox class="sapUiTinyMarginBottom">
                     <VBox width="100%" class="sapUiSmallMarginEnd">
                         <Label
-                            text="Заказ"
+                            text="Клише:"
                             labelFor="input-line"
                         />
-                        <Input />
+                        <Input value="1234A"/>
                     </VBox>
                     <VBox width="100%" class="sapUiSmallMarginEnd">
                         <Label
-                            text="Клише"
+                            text="Описание клише:"
                             labelFor="input-line"
                         />
-                        <Input />
+                        <Input placeholder="Цвет ручки, цвет и маркировка услуг печати, № клише покровного листа и др."/>
                     </VBox>
                     <VBox width="100%" class="sapUiSmallMarginEnd">
                         <Label
                             text="Формат запечатанного рулона"
                             labelFor="input-line"
                         />
-                        <Input />
+                        <Input placeholder="Формат запечатанного рулона"/>
                     </VBox>
                     <VBox width="100%">
                         <Label
                             text="Скорость машины"
                             labelFor="input-line"
                         />
-                        <Input />
+                        <Input placeholder="Скорость машины"/>
                     </VBox>
                 </HBox>
                 <HBox class="sapUiTinyMarginBottom">
@@ -156,6 +196,13 @@
                         <Label
                             text="Погонные метры"
                             labelFor="input-line"
+                        />
+                        <Input />
+                    </VBox>
+                    <VBox width="100%"  class="sapUiSmallMarginEnd" >
+                        <Label
+                        text="Длина рапорта"
+                        labelFor="input-line"
                         />
                         <Input />
                     </VBox>
@@ -211,7 +258,7 @@
                             text="Срыв, в кг: (При срыве более 50 кг необходимо заполнить поля Брак)"
                             labelFor="input-line"
                         />
-                        <Input enabled="{= ${data>/switch/defect}}" />
+                        <Input />
                     </VBox>
                 </HBox>
                 <HBox class="sapUiTinyMarginBottom">
@@ -250,97 +297,72 @@
                     customTextOn=" "
                     customTextOff=" " />
                 <VBox class="sapUiTinyMarginBottom">
-                    <Table>
+                    <Table items="{state>/table/items}">
                         <columns>
-                            <Column />
-                            <Column />
-                            <Column />
-                            <Column />
+                            <Column>
+                                <Text text="Тип простоя" />
+                            </Column>
+                            <Column>
+                                <Text text="Номер простоя" />
+                            </Column>
+                            <Column>
+                                <Text text="Начало простоя" />
+                            </Column>
+                            <Column>
+                                <Text text="Время простоя, часов, минут" />
+                            </Column>
+                            <Column>
+                                <Text text="Причина простоя" />
+                            </Column>
                         </columns>
                         <items>
                             <ColumnListItem>
-                                <cells>
-                                    <Label
-                                        text="Простой №1" />
-                                    <Label text="Тип простоя" />
-                                    <Label text="Начало простоя" />
-                                    <Label text="Время простоя, часов, минут" />
-                                </cells>
-                            </ColumnListItem>
-                            <ColumnListItem>
-                                <cells>
-                                    <Text text=" "></Text>
-                                    <Select forceSelection="false" id="downTimeSelect"
-                                        enabled="{= ${data>/switch/downTime}}"
-                                        items="{
-                                            path: 'downTime>/DownTime'
+                                <Text
+                                    text="№{state>downTimeNumber}"
+                                />
+                                <Select forceSelection="false" id="downTimeSelect"
+                                    enabled="{= ${data>/switch/downTime}}"
+                                    items="{
+                                            path: 'downTime>/DownTime',
+                                            templateShareable: false
                                         }"
-                                        selectedKey="{data>/downTime}">
-                                        <core:Item
-                                            key="{downTime>key}"
-                                            text="{downTime>name}" />
-                                    </Select>
-                                    <TimePicker enabled="{= ${data>/switch/downTime}}"
-                                        id="firstStartDateItem"
-                                        dateValue="{employee>BirthDate}"
-                                        editable="{= ${data>/editMode}}"
-                                        change=".onDateChange2"
-                                        displayFormat="hh:mm"
-                                        placeholder="--:--"
-                                    />
-                                    <TimePicker enabled="{= ${data>/switch/downTime}}"
-                                        id="TP1"
-                                        valueFormat="HH:mm"
-                                        displayFormat="HH:mm"
-                                        change="handleChange"
-                                        placeholder="--:--" />
-                                </cells>
-                            </ColumnListItem>
-                            <ColumnListItem>
-                                <cells>
-                                    <Label
-                                        text="Простой №1" />
-                                    <Label text="Тип простоя" />
-                                    <Label text="Начало простоя" />
-                                    <Label text="Время простоя, часов" />
-                                </cells>
-                            </ColumnListItem>
-                            <ColumnListItem>
-                                <cells>
-                                    <Text text=" "></Text>
-                                    <Select forceSelection="false" id="downTimeSelect2"
-                                        enabled="{= ${data>/switch/downTime}}"
-                                        items="{
-                                            path: 'downTime>/DownTime'
-                                        }"
-                                        selectedKey="{data>/downTime}">
-                                        <core:Item
-                                            key="{downTime>key}"
-                                            text="{downTime>name}" />
-                                    </Select>
-                                    <TimePicker enabled="{= ${data>/switch/downTime}}"
-                                        id="firstStartDateItem2"
-                                        dateValue="{employee>BirthDate}"
-                                        editable="{= ${data>/editMode}}"
-                                        change=".onDateChange2"
-                                        displayFormat="hh:mm"
-                                        placeholder="--:--"
-                                    />
-                                    <TimePicker enabled="{= ${data>/switch/downTime}}"
-                                        id="TP2"
-                                        valueFormat="HH:mm"
-                                        displayFormat="HH:mm"
-                                        change="handleChange"
-                                        placeholder="--:--" />
-                                </cells>
+                                    selectedKey="{state>downTimeType}">
+                                    <core:Item
+                                        key="{downTime>key}"
+                                        text="{downTime>name}" />
+                                </Select>
+
+                                <TimePicker enabled="{= ${data>/switch/downTime}}"
+                                    id="firstStartDateItem"
+                                    dateValue="{state>dateBegin}"
+                                    editable="{= ${data>/editMode}}"
+                                    change=".onDateChange2"
+                                    displayFormat="hh:mm"
+                                    placeholder="--:--"
+                                />
+
+                                <TimePicker enabled="{= ${data>/switch/downTime}}"
+                                    id="TP1"
+                                    value="{state>time}"
+                                    valueFormat="HH:mm"
+                                    displayFormat="HH:mm"
+                                    change="handleChange"
+                                    placeholder="--:--" />
                             </ColumnListItem>
                         </items>
                     </Table>
                 </VBox>
-                <Button
-                    text="Подтвердить"
-                    press="onConfirm" />
+
             </VBox>
         </content>
+        <footer>
+            <Toolbar>
+                <ToolbarSpacer />
+                <Button
+                    type="Emphasized"
+                    text="Подтвердить"
+                    press="onConfirm" />
+            </Toolbar>
+        </footer>
     </Page>
 </mvc:View>
