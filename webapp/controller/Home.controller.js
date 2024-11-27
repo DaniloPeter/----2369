@@ -24,6 +24,42 @@ sap.ui.define(
         if (sId.includes("defect"))
           oModel.setProperty("/switch/defect", newState);
       },
+
+      onDisruptWeightChange(oEvent) {
+        const newValue = oEvent.getParameter("value");
+        const oModel = this.getView().getModel("data");
+        const defectSwitch = this.getView().byId("defectSwitch");
+
+        if (newValue && parseFloat(newValue) > 50) {
+          oModel.setProperty("/switch/defect", true);
+          defectSwitch.setState(true);
+        } else {
+          oModel.setProperty("/switch/defect", false);
+          defectSwitch.setState(false);
+        }
+      },
+
+      calculateOverprint() {
+        const printMeters =
+          parseFloat(this.getView().byId("printMeters").getValue()) || 0;
+        const reportLength =
+          parseFloat(this.getView().byId("reportLength").getValue()) || 0;
+
+        if (reportLength !== 0) {
+          const overprint = printMeters / (reportLength * 0.01);
+          this.getView().byId("overprint").setValue(overprint.toFixed(2));
+        } else {
+          this.getView().byId("overprint").setValue(0);
+        }
+      },
+
+      onPrintMetersChange() {
+        this.calculateOverprint();
+      },
+
+      onReportLengthChange() {
+        this.calculateOverprint();
+      },
     });
   }
 );

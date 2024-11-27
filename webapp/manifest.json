@@ -90,16 +90,16 @@
             "busy": false,
             "items": [
               {
-                "downTimeNumber": 1,
                 "downTimeType": 0,
                 "dateBegin": null,
-                "time": null
+                "time": null,
+                "downTimeReason": null
               },
               {
-                "downTimeNumber": 2,
                 "downTimeType": 1,
                 "dateBegin": null,
-                "time": null
+                "time": null,
+                "downTimeReason": null
               }
             ]
           }

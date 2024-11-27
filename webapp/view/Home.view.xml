@@ -18,292 +18,202 @@
             <VBox class="sapUiSmallMargin">
                 <HBox class="sapUiTinyMarginBottom">
                     <VBox width="100%" class="sapUiSmallMarginEnd">
-                        <Label
-                            text="Завод:"
-                            labelFor="input-b"
-                        />
-                        <Input class="sapUiNoMarginTop"
-                            id="input-1"
+                        <Label text="Завод:" />
+                        <Input id="inputWork"
+                            class="sapUiNoMarginTop"
                             value="1234"
                             maxLength="4" />
                     </VBox>
                     <VBox width="100%" class="sapUiSmallMarginEnd">
-                        <Label
-                            text="Ресурс:"
-                            labelFor="input-b"
-                        />
+                        <Label text="Ресурс:" />
                         <Select forceSelection="false" id="resourceSelect"
+                            selectedKey="{data>/resource}"
                             width="100%"
-                            items="{
-                                path: 'resource>/Resource'
-                            }"
-                            selectedKey="{data>/resource}">
-                            <core:Item
-                                key="{resource>key}"
-                                text="{resource>name}" />
+                            items="{path: 'resource>/Resource'}"
+                        >
+                            <core:Item key="{resource>key}" text="{resource>name}" />
                         </Select>
                     </VBox>
                     <VBox width="100%" class="sapUiSmallMarginEnd">
-                        <Label
-                            text="Режим флексопечати:"
-                            labelFor="input-line"
-                        />
+                        <Label text="Режим флексопечати:" />
                         <Select forceSelection="false" id="lineSelect"
+                            selectedKey="{data>/line}"
                             width="100%"
-                            items="{
-                        path: 'line>/Line'
-                    }"
-                            selectedKey="{data>/line}">
-                            <core:Item
-                                key="{line>key}"
-                                text="{line>name}" />
+                            items="{path: 'line>/Line'}"
+                        >
+                            <core:Item key="{line>key}" text="{line>name}" />
                         </Select>
                     </VBox>
                     <VBox width="100%">
-                        <Label
-                            text="Склад:"
-                            labelFor="input-line"
-                        />
+                        <Label text="Склад:" />
                         <Select width="100%" forceSelection="false" id="orderSelect"
-                            items="{
-                                path: 'order>/Order'
-                            }"
-                            selectedKey="{data>/order}">
-                            <core:Item
-                                key="{order>key}"
-                                text="{order>name}" />
+                            items="{ path: 'order>/Order'}"
+                            selectedKey="{data>/order}"
+                        >
+                            <core:Item key="{order>key}" text="{order>name}" />
                         </Select>
                     </VBox>
                 </HBox>
                 <HBox class="sapUiTinyMarginBottom">
                     <VBox width="100%" class="sapUiSmallMarginEnd ">
-                        <Label
-                            text="Дата и время:"
-                            labelFor="input-line"
-                        />
-                        <DateTimePicker width="100%"
-                            id="dateTimePicker"
-                            displayFormat="dd.MM.yyyy hh:mm:ss"
-                            minutesStep="5" secondsStep="5"
+                        <Label text="Дата и время:" />
+                        <DateTimePicker id="dateTimePicker"
+                            width="100%"
+                            displayFormat="dd.MM.yyyy HH:mm:ss"
                             placeholder="00.00.0000 00:00:00"
-                            
                         />
                     </VBox>
                     <VBox width="100%" class="sapUiSmallMarginEnd">
-                        <Label
-                            text="Смена"
-                            labelFor="input-line"
-                        />
-                        <Select forceSelection="false" id="shiftSelect"
+                        <Label text="Смена:" />
+                        <Select id="shiftSelect"
+                            forceSelection="false"
                             width="100%"
-                            items="{
-                                path: 'shift>/Shift'
-                            }"
-                            selectedKey="{data>/shift}">
-                            <core:Item
-                                key="{shift>key}"
-                                text="{shift>name}" />
+                            items="{path: 'shift>/Shift'}"
+                            selectedKey="{data>/shift}"
+                        >
+                            <core:Item key="{shift>key}" text="{shift>name}" />
                         </Select>
                     </VBox>
                     <VBox width="100%">
-                        <Label
-                            text="Бригада:"
-                            labelFor="input-line"
-                        />
-                        <Select forceSelection="false" id="crewSelect"
+                        <Label text="Бригада:" />
+                        <Select id="crewSelect"
+                            forceSelection="false"
                             width="100%"
-                            items="{
-                                path: 'crew>/Crew'
-                            }"
-                            selectedKey="{data>/crew}">
-                            <core:Item
-                                key="{crew>key}"
-                                text="{crew>name}" />
+                            items="{path: 'crew>/Crew'}"
+                            selectedKey="{data>/crew}"
+                        >
+                            <core:Item key="{crew>key}" text="{crew>name}" />
                         </Select>
                     </VBox>
                 </HBox>
                 <HBox class="sapUiTinyMarginBottom">
                     <VBox width="100%" class="sapUiSmallMarginEnd">
-                        <Label
-                            text="Инженер по качеству:"
-                            labelFor="input-line"
-                        />
-                        <Select
-                            width="100%" forceSelection="false" id="engineerSelect"
-                            items="{
-                        path: 'engineer>/Engineer'
-                    }"
-                            selectedKey="{data>/engineer}">
-                            <core:Item
-                                key="{engineer>key}"
-                                text="{engineer>name}" />
+                        <Label text="Инженер по качеству:" />
+                        <Select id="engineerSelect"
+                            forceSelection="false"
+                            width="100%"
+                            items="{path: 'engineer>/Engineer'}"
+                            selectedKey="{data>/engineer}"
+                        >
+                            <core:Item key="{engineer>key}" text="{engineer>name}" />
                         </Select>
                     </VBox>
                     <VBox width="100%" class="sapUiSmallMarginEnd">
-                        <Label
-                            text="Печатник высокой печати:"
-                            labelFor="input-line"
-                        />
-                        <Input placeholder="ФИО печатника"/>
+                        <Label text="Печатник высокой печати:" />
+                        <Input id="printName" placeholder="ФИО печатника" />
+                    </VBox>
+                    <VBox width="100%" class="sapUiSmallMarginEnd">
+                        <Label text="Заказ:" />
+                        <Input id="techNumber" placeholder="Номер технологического заказа" />
                     </VBox>
                     <VBox width="100%">
-                        <Label
-                            text="Заказ:"
-                            labelFor="input-line"
-                        />
-                        <Input placeholder="Номер технологического заказа"/>
+                        <Label text="Клише:" />
+                        <Input id="cliche" value="1234A" />
                     </VBox>
                 </HBox>
                 <HBox class="sapUiTinyMarginBottom">
                     <VBox width="100%" class="sapUiSmallMarginEnd">
-                        <Label
-                            text="Клише:"
-                            labelFor="input-line"
-                        />
-                        <Input value="1234A"/>
+                        <Label text="Описание клише:" />
+                        <Input id="clicheDescription" placeholder="Описание клише" />
                     </VBox>
                     <VBox width="100%" class="sapUiSmallMarginEnd">
-                        <Label
-                            text="Описание клише:"
-                            labelFor="input-line"
-                        />
-                        <Input placeholder="Цвет ручки, цвет и маркировка услуг печати, № клише покровного листа и др."/>
+                        <Label text="Формат исходного рулона:" />
+                        <Input id="sourceRollFormat" value="0" />
                     </VBox>
                     <VBox width="100%" class="sapUiSmallMarginEnd">
-                        <Label
-                            text="Формат запечатанного рулона"
-                            labelFor="input-line"
-                        />
-                        <Input placeholder="Формат запечатанного рулона"/>
+                        <Label text="Формат запечатанного рулона:" />
+                        <Input id="printRollFormat" placeholder="Формат запечатанного рулона" />
                     </VBox>
                     <VBox width="100%">
-                        <Label
-                            text="Скорость машины"
-                            labelFor="input-line"
-                        />
-                        <Input placeholder="Скорость машины"/>
+                        <Label text="Скорость машины:" />
+                        <Input id="machineSpeed" placeholder="Скорость машины" />
                     </VBox>
                 </HBox>
                 <HBox class="sapUiTinyMarginBottom">
                     <VBox width="100%" class="sapUiSmallMarginEnd">
-                        <Label
-                            text="Диаметр запечатанного рулона"
-                            labelFor="input-line"
-                        />
-                        <Input />
+                        <Label text="Диаметр запечатанного рулона:" />
+                        <Input id="rollDiameter" placeholder="Диаметр запечатанного рулона" />
                     </VBox>
                     <VBox width="100%" class="sapUiSmallMarginEnd">
-                        <Label
-                            text="Погонные метры"
-                            labelFor="input-line"
-                        />
-                        <Input />
+                        <Label text="Погонные метры:" />
+                        <Input id="printMeters"
+                            liveChange=".onPrintMetersChange"
+                            placeholder="Метраж выходящего погонного рулона" />
                     </VBox>
-                    <VBox width="100%"  class="sapUiSmallMarginEnd" >
-                        <Label
-                        text="Длина рапорта"
-                        labelFor="input-line"
-                        />
-                        <Input />
+                    <VBox width="100%" class="sapUiSmallMarginEnd">
+                        <Label text="Длина рапорта:" />
+                        <Input id="reportLength"
+                            liveChange=".onReportLengthChange"
+                            placeholder="Длина рапорта" />
                     </VBox>
                     <VBox width="100%">
-                        <Label
-                            text="Оттиски"
-                            labelFor="input-line"
-                        />
-                        <Input />
+                        <Label text="Оттиски:" />
+                        <Input id="overprint" value="0" />
                     </VBox>
                 </HBox>
                 <HBox class="sapUiTinyMarginBottom">
                     <VBox width="100%" class="sapUiSmallMarginEnd">
-                        <Label
-                            text="№ Рулона 1"
-                            labelFor="input-line"
-                        />
-                        <Input />
+                        <Label text="№ Рулона 1:" />
+                        <Input id="rollNumberOne" placeholder="Номер рулона 1" />
                     </VBox>
                     <VBox width="100%" class="sapUiSmallMarginEnd">
-                        <Label
-                            text="Радиус остатка 1"
-                            labelFor="input-line"
-                        />
-                        <Input />
+                        <Label text="Радиус остатка 1:" />
+                        <Input id="remainNumberOne" placeholder="Радиус остатка 1" />
                     </VBox>
                     <VBox width="100%" class="sapUiSmallMarginEnd">
-                        <Label
-                            text="№ Рулона 2"
-                            labelFor="input-line"
-                        />
-                        <Input />
+                        <Label text="№ Рулона 2:" />
+                        <Input id="rollNumberTwo" placeholder="Номер рулона 2" />
                     </VBox>
                     <VBox width="100%">
-                        <Label
-                            text="Радиус остатка 2"
-                            labelFor="input-line"
-                        />
-                        <Input />
+                        <Label text="Радиус остатка 2:" />
+                        <Input id="remainNumberTwo" placeholder="Радиус остатка 2" />
                     </VBox>
                 </HBox>
                 <HBox class="sapUiTinyMarginBottom">
                     <VBox width="25%" class="sapUiSmallMarginEnd">
-                        <Label
-                            text="Брак"
-                            labelFor="input-line"
-                        />
+                        <Label text="Брак" />
                         <Switch id="defectSwitch" state="{= ${data>/switch/defect}}"
                             change=".onSwitchChange" customTextOn=" " customTextOff=" " />
                     </VBox>
                     <VBox width="100%">
                         <Label
-                            text="Срыв, в кг: (При срыве более 50 кг необходимо заполнить поля Брак)"
-                            labelFor="input-line"
-                        />
-                        <Input />
+                            text="Срыв, в кг: (При срыве более 50 кг необходимо заполнить поля Брак)" />
+                        <Input id="disruptWeight"
+                            liveChange=".onDisruptWeightChange"
+                            placeholder="Вес срыва" />
                     </VBox>
                 </HBox>
                 <HBox class="sapUiTinyMarginBottom">
                     <VBox width="25%" class="sapUiSmallMarginEnd">
-                        <Label
-                            text="Тип брака"
-                            labelFor="input-line"
-                        />
-                        <Select forceSelection="false" id="defectSelect"
+                        <Label text="Тип брака:" />
+                        <Select id="defectSelect"
+                            forceSelection="false"
                             width="100%"
                             enabled="{= ${data>/switch/defect}}"
-                            items="{
-                        path: 'defect>/Defect'
-                    }"
-                            selectedKey="{data>/defect}">
-                            <core:Item
-                                key="{defect>key}"
-                                text="{defect>name}" />
+                            items="{path: 'defect>/Defect'}"
+                            selectedKey="{data>/defect}"
+                        >
+                            <core:Item key="{defect>key}" text="{defect>name}" />
                         </Select>
                     </VBox>
                     <VBox width="100%">
-                        <Label
-                            text="Комментарий"
-                            labelFor="input-line"
-                        />
-                        <Input enabled="{= ${data>/switch/defect}}" />
+                        <Label text="Комментарий:" />
+                        <Input placeholder="Комментарий, содержащий информацию о браке рулона"
+                            enabled="{= ${data>/switch/defect}}" />
                     </VBox>
                 </HBox>
-
-                <Label
-                    text="Простой"
-                    labelFor="input-line"
-                />
-                <Switch id="downTimeSwitch" state="{= ${data>/switch/downTime}}"
+                <Label text="Простой" />
+                <Switch id="downTimeSwitch"
+                    state="{= ${data>/switch/downTime}}"
                     change=".onSwitchChange"
                     customTextOn=" "
-                    customTextOff=" " />
+                    customTextOff=" "
+                />
                 <VBox class="sapUiTinyMarginBottom">
                     <Table items="{state>/table/items}">
                         <columns>
                             <Column>
                                 <Text text="Тип простоя" />
-                            </Column>
-                            <Column>
-                                <Text text="Номер простоя" />
                             </Column>
                             <Column>
                                 <Text text="Начало простоя" />
@@ -317,42 +227,40 @@
                         </columns>
                         <items>
                             <ColumnListItem>
-                                <Text
-                                    text="№{state>downTimeNumber}"
-                                />
                                 <Select forceSelection="false" id="downTimeSelect"
                                     enabled="{= ${data>/switch/downTime}}"
                                     items="{
                                             path: 'downTime>/DownTime',
                                             templateShareable: false
-                                        }"
+                                    }"
                                     selectedKey="{state>downTimeType}">
-                                    <core:Item
-                                        key="{downTime>key}"
-                                        text="{downTime>name}" />
+                                    <core:Item key="{downTime>key}" text="{downTime>name}" />
                                 </Select>
-
-                                <TimePicker enabled="{= ${data>/switch/downTime}}"
-                                    id="firstStartDateItem"
+                                <TimePicker id="dateBeginItem"
+                                    enabled="{= ${data>/switch/downTime}}"
                                     dateValue="{state>dateBegin}"
-                                    editable="{= ${data>/editMode}}"
                                     change=".onDateChange2"
-                                    displayFormat="hh:mm"
+                                    displayFormat="HH:mm"
+                                    valueFormat="HH:mm"
                                     placeholder="--:--"
                                 />
-
-                                <TimePicker enabled="{= ${data>/switch/downTime}}"
-                                    id="TP1"
-                                    value="{state>time}"
+                                <TimePicker id="downTimeItem"
+                                    enabled="{= ${data>/switch/downTime}}"
+                                    dateValue="{state>downTime}"
                                     valueFormat="HH:mm"
                                     displayFormat="HH:mm"
                                     change="handleChange"
                                     placeholder="--:--" />
+
+                                <Input id="downTimeReason"
+                                    enabled="{= ${data>/switch/downTime}}"
+                                    value="{state>downTimeReason}"
+                                    placeholder="Причина простоя"
+                                ></Input>
                             </ColumnListItem>
                         </items>
                     </Table>
                 </VBox>
-
             </VBox>
         </content>
         <footer>
