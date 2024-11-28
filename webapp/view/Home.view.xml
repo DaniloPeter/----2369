@@ -34,6 +34,15 @@
                             <core:Item key="{resource>key}" text="{resource>name}" />
                         </Select>
                     </VBox>
+                    <VBox width="100%">
+                        <Label text="Склад:" />
+                        <Select width="100%" forceSelection="false" id="orderSelect"
+                            items="{ path: 'order>/Order'}"
+                            selectedKey="{data>/order}"
+                        >
+                            <core:Item key="{order>key}" text="{order>name}" />
+                        </Select>
+                    </VBox>
                     <VBox width="100%" class="sapUiSmallMarginEnd">
                         <Label text="Режим флексопечати:" />
                         <Select forceSelection="false" id="lineSelect"
@@ -42,15 +51,6 @@
                             items="{path: 'line>/Line'}"
                         >
                             <core:Item key="{line>key}" text="{line>name}" />
-                        </Select>
-                    </VBox>
-                    <VBox width="100%">
-                        <Label text="Склад:" />
-                        <Select width="100%" forceSelection="false" id="orderSelect"
-                            items="{ path: 'order>/Order'}"
-                            selectedKey="{data>/order}"
-                        >
-                            <core:Item key="{order>key}" text="{order>name}" />
                         </Select>
                     </VBox>
                 </HBox>
@@ -87,21 +87,7 @@
                     </VBox>
                 </HBox>
                 <HBox class="sapUiTinyMarginBottom">
-                    <VBox width="100%" class="sapUiSmallMarginEnd">
-                        <Label text="Инженер по качеству:" />
-                        <Select id="engineerSelect"
-                            forceSelection="false"
-                            width="100%"
-                            items="{path: 'engineer>/Engineer'}"
-                            selectedKey="{data>/engineer}"
-                        >
-                            <core:Item key="{engineer>key}" text="{engineer>name}" />
-                        </Select>
-                    </VBox>
-                    <VBox width="100%" class="sapUiSmallMarginEnd">
-                        <Label text="Печатник высокой печати:" />
-                        <Input id="printName" placeholder="ФИО печатника" />
-                    </VBox>
+                    
                     <VBox width="100%" class="sapUiSmallMarginEnd">
                         <Label text="Заказ:" />
                         <Input id="techNumber" placeholder="Номер технологического заказа" />
@@ -110,12 +96,16 @@
                         <Label text="Клише:" />
                         <Input id="cliche" value="1234A" />
                     </VBox>
-                </HBox>
-                <HBox class="sapUiTinyMarginBottom">
                     <VBox width="100%" class="sapUiSmallMarginEnd">
                         <Label text="Описание клише:" />
                         <Input id="clicheDescription" placeholder="Описание клише" />
                     </VBox>
+                    <VBox width="100%">
+                        <Label text="Скорость машины:" />
+                        <Input id="machineSpeed" placeholder="Скорость машины" />
+                    </VBox>
+                </HBox>
+                <HBox class="sapUiTinyMarginBottom">
                     <VBox width="100%" class="sapUiSmallMarginEnd">
                         <Label text="Формат исходного рулона:" />
                         <Input id="sourceRollFormat" value="0" />
@@ -124,9 +114,23 @@
                         <Label text="Формат запечатанного рулона:" />
                         <Input id="printRollFormat" placeholder="Формат запечатанного рулона" />
                     </VBox>
+                </HBox>
+                <HBox class="sapUiTinyMarginBottom">
+                    <VBox width="100%" class="sapUiSmallMarginEnd">
+                        <Label text="№ Рулона 1:" />
+                        <Input id="rollNumberOne" placeholder="Номер рулона 1" />
+                    </VBox>
+                    <VBox width="100%" class="sapUiSmallMarginEnd">
+                        <Label text="Радиус остатка 1:" />
+                        <Input id="remainNumberOne" placeholder="Радиус остатка 1" />
+                    </VBox>
+                    <VBox width="100%" class="sapUiSmallMarginEnd">
+                        <Label text="№ Рулона 2:" />
+                        <Input id="rollNumberTwo" placeholder="Номер рулона 2" />
+                    </VBox>
                     <VBox width="100%">
-                        <Label text="Скорость машины:" />
-                        <Input id="machineSpeed" placeholder="Скорость машины" />
+                        <Label text="Радиус остатка 2:" />
+                        <Input id="remainNumberTwo" placeholder="Радиус остатка 2" />
                     </VBox>
                 </HBox>
                 <HBox class="sapUiTinyMarginBottom">
@@ -151,22 +155,22 @@
                         <Input id="overprint" value="0" />
                     </VBox>
                 </HBox>
-                <HBox class="sapUiTinyMarginBottom">
+                
+                <HBox>
                     <VBox width="100%" class="sapUiSmallMarginEnd">
-                        <Label text="№ Рулона 1:" />
-                        <Input id="rollNumberOne" placeholder="Номер рулона 1" />
+                        <Label text="Инженер по качеству:" />
+                        <Select id="engineerSelect"
+                            forceSelection="false"
+                            width="100%"
+                            items="{path: 'engineer>/Engineer'}"
+                            selectedKey="{data>/engineer}"
+                        >
+                            <core:Item key="{engineer>key}" text="{engineer>name}" />
+                        </Select>
                     </VBox>
                     <VBox width="100%" class="sapUiSmallMarginEnd">
-                        <Label text="Радиус остатка 1:" />
-                        <Input id="remainNumberOne" placeholder="Радиус остатка 1" />
-                    </VBox>
-                    <VBox width="100%" class="sapUiSmallMarginEnd">
-                        <Label text="№ Рулона 2:" />
-                        <Input id="rollNumberTwo" placeholder="Номер рулона 2" />
-                    </VBox>
-                    <VBox width="100%">
-                        <Label text="Радиус остатка 2:" />
-                        <Input id="remainNumberTwo" placeholder="Радиус остатка 2" />
+                        <Label text="Печатник высокой печати:" />
+                        <Input id="printName" placeholder="ФИО печатника" />
                     </VBox>
                 </HBox>
                 <HBox class="sapUiTinyMarginBottom">
